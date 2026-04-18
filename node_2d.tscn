@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://d00ggcagdnes2"]
+
+[ext_resource type="PackedScene" uid="uid://b7nm8nllfbqe0" path="res://player.tscn" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://cpjyhwh15bgf5" path="res://images/icon.svg" id="2_epypp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(126, 40)
+
+[node name="Node2D" type="Node2D" unique_id=1524463104]
+
+[node name="Player" parent="." unique_id=1539133811 instance=ExtResource("1_0e48y")]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=318765809]
+
+[node name="debris" type="RigidBody2D" parent="." unique_id=91963961]
+position = Vector2(-219, 19)
+gravity_scale = 0.0
+linear_velocity = Vector2(50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="debris" unique_id=912497283]
+scale = Vector2(1, 0.328125)
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="debris" unique_id=12508516]
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="debris2" type="RigidBody2D" parent="." unique_id=1030908341]
+position = Vector2(379, -501)
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="debris2" unique_id=2095247020]
+scale = Vector2(1, 0.328125)
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="debris2" unique_id=1621446465]
+visible = false
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="debris3" type="RigidBody2D" parent="." unique_id=1491671772]
+position = Vector2(357, -115)
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="debris3" unique_id=713554641]
+scale = Vector2(1, 0.328125)
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="debris3" unique_id=1130023428]
+visible = false
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="debris4" type="RigidBody2D" parent="." unique_id=1089412836]
+position = Vector2(-213, -132)
+gravity_scale = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="debris4" unique_id=411080760]
+scale = Vector2(1, 0.328125)
+texture = ExtResource("2_epypp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="debris4" unique_id=1826535529]
+visible = false
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=397079747]

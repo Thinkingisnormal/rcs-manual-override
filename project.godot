@@ -14,7 +14,17 @@ config/name="create task RCS"
 config/tags=PackedStringArray("physics")
 run/main_scene="uid://d00ggcagdnes2"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://images/icon.svg"
+config/icon="uid://npme7nvwae13"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
+[global_group]
+
+debris="the debris falling towards the player"
+player=""
 
 [physics]
 

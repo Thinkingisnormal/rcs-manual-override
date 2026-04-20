@@ -14,7 +14,7 @@ can_sleep = false
 contact_monitor = true
 max_contacts_reported = 5
 script = ExtResource("1_onrkg")
-MAX_THRUST = 10000
+HEALTH = 99999999
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=35306235]
 position = Vector2(2, 0)

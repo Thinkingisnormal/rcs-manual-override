@@ -1,63 +1,86 @@
 [gd_scene format=3 uid="uid://d00ggcagdnes2"]
 
 [ext_resource type="PackedScene" uid="uid://b7nm8nllfbqe0" path="res://player.tscn" id="1_0e48y"]
-[ext_resource type="Texture2D" uid="uid://cpjyhwh15bgf5" path="res://images/icon.svg" id="2_epypp"]
+[ext_resource type="Script" uid="uid://cqlx7by4hxq4g" path="res://gameManager.gd" id="1_epypp"]
+[ext_resource type="PackedScene" uid="uid://c76qp2gfy80s7" path="res://gameplay UI.tscn" id="3_epypp"]
+[ext_resource type="Texture2D" uid="uid://cr5d5eo43dca5" path="res://images/parallax/Nebula Aqua-Pink.png" id="4_0hol4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
-size = Vector2(126, 40)
+[sub_resource type="GDScript" id="GDScript_0e48y"]
+script/source = "extends Area2D
 
-[node name="Node2D" type="Node2D" unique_id=1524463104]
+var window_size : Vector2
 
-[node name="Player" parent="." unique_id=1539133811 instance=ExtResource("1_0e48y")]
+@onready var collisionshape = $CollisionShape2D
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=318765809]
 
-[node name="debris" type="RigidBody2D" parent="." unique_id=91963961]
-position = Vector2(-219, 19)
-gravity_scale = 0.0
-linear_velocity = Vector2(50, 0)
+# creating size of play area, debris that exits will be disposed (and prolly the player dies immediately)
+func _ready() -> void:
+	window_size = get_viewport().get_visible_rect().size
+	var playshape = RectangleShape2D.new()
+	playshape.set_size( window_size * Vector2(2,2)) 
+	print(playshape.get_size())
+	collisionshape.set_shape(playshape)
 
-[node name="Sprite2D" type="Sprite2D" parent="debris" unique_id=912497283]
-scale = Vector2(1, 0.328125)
-texture = ExtResource("2_epypp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="debris" unique_id=12508516]
-shape = SubResource("RectangleShape2D_0hol4")
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
-[node name="debris2" type="RigidBody2D" parent="." unique_id=1030908341]
-position = Vector2(379, -501)
-gravity_scale = 0.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0e48y"]
+size = Vector2(1919.795, 1075.87)
 
-[node name="Sprite2D" type="Sprite2D" parent="debris2" unique_id=2095247020]
-scale = Vector2(1, 0.328125)
-texture = ExtResource("2_epypp")
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
+size = Vector2(1920, 1080)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="debris2" unique_id=1621446465]
+[node name="game" type="Node2D" unique_id=1524463104]
+position = Vector2(960, 538)
+script = ExtResource("1_epypp")
+
+[node name="Player" parent="." unique_id=1539133811 groups=["player"] instance=ExtResource("1_0e48y")]
+MAX_THRUST = 15000
+HEALTH = 1000
+
+[node name="mainCamera" type="Camera2D" parent="." unique_id=397079747]
+visibility_layer = 5
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1320842130]
+autostart = true
+
+[node name="playArea" type="Area2D" parent="." unique_id=152348375]
 visible = false
-shape = SubResource("RectangleShape2D_0hol4")
+script = SubResource("GDScript_0e48y")
 
-[node name="debris3" type="RigidBody2D" parent="." unique_id=1491671772]
-position = Vector2(357, -115)
-gravity_scale = 0.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playArea" unique_id=1086777020]
+shape = SubResource("RectangleShape2D_0e48y")
+one_way_collision_margin = 0.0
 
-[node name="Sprite2D" type="Sprite2D" parent="debris3" unique_id=713554641]
-scale = Vector2(1, 0.328125)
-texture = ExtResource("2_epypp")
+[node name="MainArea" type="Area2D" parent="." unique_id=123145060]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="debris3" unique_id=1130023428]
-visible = false
-shape = SubResource("RectangleShape2D_0hol4")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainArea" unique_id=340730265]
+shape = SubResource("RectangleShape2D_epypp")
 
-[node name="debris4" type="RigidBody2D" parent="." unique_id=1089412836]
-position = Vector2(-213, -132)
-gravity_scale = 0.0
+[node name="GamePlay UI" parent="." unique_id=738112433 node_paths=PackedStringArray("player") instance=ExtResource("3_epypp")]
+visibility_layer = 4
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 1
+grow_vertical = 1
+player = NodePath("../Player")
 
-[node name="Sprite2D" type="Sprite2D" parent="debris4" unique_id=411080760]
-scale = Vector2(1, 0.328125)
-texture = ExtResource("2_epypp")
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=814918925]
+z_index = -3
+autoscroll = Vector2(0, 10000)
+repeat_times = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="debris4" unique_id=1826535529]
-visible = false
-shape = SubResource("RectangleShape2D_0hol4")
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1468894608]
+scale = Vector2(1.73, 1.73)
+texture = ExtResource("4_0hol4")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=397079747]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="body_exited" from="playArea" to="." method="_on_play_area_body_exited"]

@@ -11,14 +11,13 @@ extends RigidBody2D
 @onready var lower_right_t = $"thrusters/lower right thruster"
 
 
-@export var MAX_THRUST = 400;
+@export var MAX_THRUST = 10000;
 @export var HEALTH = 100;
 
-var isDead = false;
+@export var isDead = false;
 
 func _ready() -> void:
-	set_angular_velocity(randf_range(-1,1))
-
+	pass
 
 
 
@@ -40,7 +39,7 @@ func _integrate_forces(state):
 	var impulse_length := total_impulse.length()
 	# to subtract
 	HEALTH -= impulse_length
-	print(HEALTH);
+	
 
 
 func inputInit(state):

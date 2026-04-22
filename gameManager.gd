@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -23,9 +23,7 @@ func _on_spawn_timer_timeout() -> void:
 	
 
 
-func create_disposal_area():
-	var disposal = Area2D.new()
-	
+
 
 
 func _on_play_area_body_exited(body: Node2D) -> void:

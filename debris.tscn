@@ -5,7 +5,7 @@
 
 [node name="debris" type="RigidBody2D" unique_id=281072232 groups=["debris"]]
 position = Vector2(3561, -11)
-mass = 100000.0
+mass = 10000.0
 script = ExtResource("1_ov8td")
 impulse = 180
 

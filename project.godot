@@ -21,6 +21,10 @@ config/icon="uid://npme7nvwae13"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[dotnet]
+
+project/assembly_name="create task RCS"
+
 [global_group]
 
 debris="the debris falling towards the player"

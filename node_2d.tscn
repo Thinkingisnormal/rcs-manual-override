@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://d00ggcagdnes2"]
 
 [ext_resource type="PackedScene" uid="uid://b7nm8nllfbqe0" path="res://player.tscn" id="1_0e48y"]
-[ext_resource type="Script" uid="uid://cqlx7by4hxq4g" path="res://gameManager.gd" id="1_epypp"]
+[ext_resource type="Script" uid="uid://cqlx7by4hxq4g" path="res://scripts/gameManager.gd" id="1_epypp"]
 [ext_resource type="PackedScene" uid="uid://c76qp2gfy80s7" path="res://gameplay UI.tscn" id="3_epypp"]
 [ext_resource type="Texture2D" uid="uid://cr5d5eo43dca5" path="res://images/parallax/Nebula Aqua-Pink.png" id="4_0hol4"]
+[ext_resource type="PackedScene" uid="uid://bgwdabioj7005" path="res://afterAction.tscn" id="5_q6r6c"]
 
 [sub_resource type="GDScript" id="GDScript_0e48y"]
 script/source = "extends Area2D
@@ -33,13 +34,16 @@ size = Vector2(1919.795, 1075.87)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
 size = Vector2(1920, 1080)
 
+[sub_resource type="LabelSettings" id="LabelSettings_0hol4"]
+font_size = 109
+
 [node name="game" type="Node2D" unique_id=1524463104]
 position = Vector2(960, 538)
 script = ExtResource("1_epypp")
 
 [node name="Player" parent="." unique_id=1539133811 groups=["player"] instance=ExtResource("1_0e48y")]
 MAX_THRUST = 15000
-HEALTH = 100
+HEALTH = 50
 
 [node name="mainCamera" type="Camera2D" parent="." unique_id=397079747]
 visibility_layer = 5
@@ -61,6 +65,7 @@ one_way_collision_margin = 0.0
 shape = SubResource("RectangleShape2D_epypp")
 
 [node name="GamePlay UI" parent="." unique_id=738112433 node_paths=PackedStringArray("player") instance=ExtResource("3_epypp")]
+unique_name_in_owner = true
 visibility_layer = 4
 anchors_preset = 0
 anchor_right = 0.0
@@ -72,6 +77,18 @@ offset_bottom = 540.0
 grow_horizontal = 1
 grow_vertical = 1
 player = NodePath("../Player")
+
+[node name="Label" type="Label" parent="GamePlay UI" unique_id=204458036]
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 149.0
+text = "N"
+label_settings = SubResource("LabelSettings_0hol4")
+
+[node name="After Action UI" parent="GamePlay UI" unique_id=2012891765 instance=ExtResource("5_q6r6c")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=814918925]
 z_index = -3

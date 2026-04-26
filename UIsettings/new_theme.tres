@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://cjepsxade1ybd"]
+
+[ext_resource type="FontFile" uid="uid://cetvylfohoiej" path="res://images/times.ttf" id="1_amlv4"]
+
+[resource]
+default_font = ExtResource("1_amlv4")
+Label/fonts/font = ExtResource("1_amlv4")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/fonts/normal_font = ExtResource("1_amlv4")

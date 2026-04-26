@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://bgwdabioj7005"]
+
+[ext_resource type="Texture2D" uid="uid://cmoyv2ysqtria" path="res://images/nasa-logo.svg" id="1_ast83"]
+[ext_resource type="Theme" uid="uid://cjepsxade1ybd" path="res://UIsettings/new_theme.tres" id="1_qdmad"]
+[ext_resource type="FontFile" uid="uid://cetvylfohoiej" path="res://images/times.ttf" id="2_qdmad"]
+[ext_resource type="PackedScene" uid="uid://ccp4q3b2vw47v" path="res://summaryRowUI.tscn" id="4_1pjrk"]
+
+[sub_resource type="FontVariation" id="FontVariation_ahapx"]
+base_font = ExtResource("2_qdmad")
+variation_embolden = 0.28
+
+[sub_resource type="LabelSettings" id="LabelSettings_uvi5r"]
+font = ExtResource("2_qdmad")
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+
+[node name="After Action UI" type="Control" unique_id=2012891765]
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_horizontal_guides_ = [194.0]
+metadata/_edit_lock_ = true
+metadata/_edit_vertical_guides_ = [1260.0, 1782.0]
+
+[node name="background" type="ColorRect" parent="." unique_id=128158554]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1584723, 0.15847233, 0.1584723, 1)
+metadata/_edit_lock_ = true
+
+[node name="Paper" type="ColorRect" parent="." unique_id=1341835538]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -294.0
+offset_top = -434.0
+offset_right = 294.0
+offset_bottom = 434.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NasaLogo" type="TextureRect" parent="Paper" unique_id=2109883161]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -122.99997
+offset_top = 88.0
+offset_right = -53.6521
+offset_bottom = 146.0
+grow_horizontal = 0
+texture = ExtResource("1_ast83")
+expand_mode = 1
+
+[node name="HeaderText" type="RichTextLabel" parent="Paper" unique_id=754051681]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 88.0
+offset_right = 325.0
+offset_bottom = 139.0
+theme = ExtResource("1_qdmad")
+theme_override_fonts/bold_font = SubResource("FontVariation_ahapx")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+bbcode_enabled = true
+text = "National Aeronautics and Space Administration
+[b]Headquarters[/b]
+Washington, DC 20546-0001
+
+
+
+Here is today's report as requested:"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+metadata/_edit_lock_ = true
+
+[node name="BodyContainer" type="ScrollContainer" parent="Paper" unique_id=565338531]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.99994
+offset_top = -216.0
+offset_right = 256.99994
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+horizontal_scroll_mode = 0
+
+[node name="BodyVbox" type="VBoxContainer" parent="Paper/BodyContainer" unique_id=769731569]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Row" parent="Paper/BodyContainer/BodyVbox" unique_id=863284840 instance=ExtResource("4_1pjrk")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Paper" unique_id=1037972282]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 37.0
+offset_top = -165.0
+offset_right = 77.0
+offset_bottom = -142.0
+grow_vertical = 0
+text = "Our next budget is so cooked..."
+label_settings = SubResource("LabelSettings_uvi5r")
+
+[node name="HeaderText2" type="RichTextLabel" parent="Paper" unique_id=1340907335]
+layout_mode = 0
+offset_left = 432.0
+offset_top = 756.0
+offset_right = 532.0
+offset_bottom = 793.0
+theme = ExtResource("1_qdmad")
+theme_override_fonts/bold_font = SubResource("FontVariation_ahapx")
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
+bbcode_enabled = true
+text = "Best regards,
+Jebidiah Kerman"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 2

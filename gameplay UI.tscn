@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c76qp2gfy80s7"]
 
-[ext_resource type="Shader" uid="uid://bj5wk4gxo64n0" path="res://CRT.gdshader" id="1_yejxs"]
+[ext_resource type="Shader" uid="uid://bj5wk4gxo64n0" path="res://scripts/CRT.gdshader" id="1_yejxs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_td67n"]
 
@@ -11,23 +11,27 @@ script/source = "extends Control
 @onready var ship_camera : Camera2D = $PanelContainer/SubViewportContainer/SubViewport/shipCamera
 
 @export var player : Node2D
-@onready var health_text: Label = %healthText
 
 @onready var subview = $PanelContainer/SubViewportContainer/SubViewport
 
+@onready var health_bar: ProgressBar = %healthBar
+
 @onready var reg_camera = $\"../mainCamera\"
+
+@onready var after_action_ui: Control = $\"After Action UI\"
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	subview.world_2d = get_viewport().world_2d
+	subview.world_2d = get_viewport().world_2d # allows the subviewport (bottom right square of screen) to render the same 2d world as the main viewport
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	ship_camera.global_position = player.global_position
-	health_text.text= \"Hull Integrity: \" + str(player.HEALTH)
-"
+	ship_camera.global_position = player.global_position #just making ship camera a child of the player seemed to break stuff so i just did this
+	health_bar.value = player.HEALTH
+	
 
-[sub_resource type="LabelSettings" id="LabelSettings_yvofw"]
-font_size = 61
+func ondeath():
+	pass
+"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yvofw"]
 bg_color = Color(1, 1, 1, 1)
@@ -49,6 +53,19 @@ shader_parameter/roll_speed = 1.0
 shader_parameter/scan_line_strength = -8.0
 shader_parameter/pixel_strength = -2.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yejxs"]
+bg_color = Color(0.8862625, 0.67260885, 0.26240906, 1)
+skew = Vector2(-0.115, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.28485027, 0.2848503, 0.28485012, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yejxs"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="GamePlay UI" type="Control" unique_id=738112433]
 z_index = 1
 material = SubResource("CanvasItemMaterial_td67n")
@@ -63,19 +80,6 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_epypp")
-
-[node name="healthText" type="Label" parent="." unique_id=641082731]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -84.0
-offset_right = 360.0
-grow_vertical = 0
-text = "Health: NaN"
-label_settings = SubResource("LabelSettings_yvofw")
-vertical_alignment = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=452372124]
 layout_mode = 1
@@ -114,3 +118,29 @@ material = SubResource("ShaderMaterial_tke73")
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(7.547164, 7.517303)
+
+[node name="healthBar" type="ProgressBar" parent="." unique_id=1853759911]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = -86.0
+offset_right = 495.0
+offset_bottom = -16.0
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_yejxs")
+value = 76.0
+
+[node name="Label" type="Label" parent="healthBar" unique_id=1796193546]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 113.0
+offset_bottom = 54.0
+text = "Hull Integrity:"
+label_settings = SubResource("LabelSettings_yejxs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2029080950]

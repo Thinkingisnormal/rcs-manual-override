@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://ccp4q3b2vw47v"]
+
+[ext_resource type="Theme" uid="uid://cjepsxade1ybd" path="res://UIsettings/new_theme.tres" id="1_5qps0"]
+[ext_resource type="LabelSettings" uid="uid://q153r32nwvrs" path="res://UIsettings/bodylabelsettings.tres" id="2_mdwry"]
+[ext_resource type="FontFile" uid="uid://cetvylfohoiej" path="res://images/times.ttf" id="3_xgbpi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1pjrk"]
+font = ExtResource("3_xgbpi")
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ahapx"]
+font = ExtResource("3_xgbpi")
+font_size = 25
+font_color = Color(0.70980394, 0, 0, 1)
+
+[node name="Row" type="ColorRect" unique_id=863284840]
+custom_minimum_size = Vector2(0, 75)
+offset_left = -234.0
+offset_right = 234.0
+offset_bottom = 75.0
+color = Color(0.92535293, 0.9253528, 0.9253529, 1)
+
+[node name="Main Text" type="Label" parent="." unique_id=112472172]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = -18.5
+offset_right = 158.5
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5qps0")
+text = "The ship crashed into a rock, losing a few panels"
+label_settings = ExtResource("2_mdwry")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Sub Text" type="Label" parent="." unique_id=567820708]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.5
+offset_top = -30.0
+offset_right = 114.5
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "This is the subtext, reserved for fun facts"
+label_settings = SubResource("LabelSettings_1pjrk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health Text" type="Label" parent="." unique_id=422178703]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -26.5
+offset_bottom = 26.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "(-15)"
+label_settings = SubResource("LabelSettings_ahapx")
+horizontal_alignment = 1
+vertical_alignment = 1

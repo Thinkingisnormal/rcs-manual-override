@@ -42,6 +42,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Sub Text" type="Label" parent="." unique_id=567820708]
+editor_description = "This is the subtext, reserved for fun facts"
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -54,7 +55,6 @@ offset_right = 114.5
 offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "This is the subtext, reserved for fun facts"
 label_settings = SubResource("LabelSettings_1pjrk")
 horizontal_alignment = 1
 vertical_alignment = 1

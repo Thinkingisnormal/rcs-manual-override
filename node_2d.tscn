@@ -43,7 +43,7 @@ script = ExtResource("1_epypp")
 
 [node name="Player" parent="." unique_id=1539133811 groups=["player"] instance=ExtResource("1_0e48y")]
 MAX_THRUST = 15000
-HEALTH = 50
+HEALTH = 100
 
 [node name="mainCamera" type="Camera2D" parent="." unique_id=397079747]
 visibility_layer = 5

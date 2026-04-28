@@ -14,6 +14,11 @@ font = ExtResource("2_qdmad")
 font_size = 14
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_1pjrk"]
+font = ExtResource("2_qdmad")
+font_size = 14
+font_color = Color(0, 0, 0, 1)
+
 [node name="After Action UI" type="Control" unique_id=2012891765]
 z_index = 2
 layout_mode = 3
@@ -110,20 +115,22 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Row" parent="Paper/BodyContainer/BodyVbox" unique_id=863284840 instance=ExtResource("4_1pjrk")]
+visible = false
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Paper" unique_id=1037972282]
+[node name="endingSentence" type="Label" parent="Paper" unique_id=1037972282]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 37.0
-offset_top = -165.0
-offset_right = 77.0
-offset_bottom = -142.0
+offset_top = -179.0
+offset_right = 452.0
+offset_bottom = -114.0
 grow_vertical = 0
 text = "Our next budget is so cooked..."
 label_settings = SubResource("LabelSettings_uvi5r")
+autowrap_mode = 1
 
 [node name="HeaderText2" type="RichTextLabel" parent="Paper" unique_id=1340907335]
 layout_mode = 0
@@ -142,3 +149,18 @@ fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
 horizontal_alignment = 2
+
+[node name="nearMiss" type="Label" parent="Paper" unique_id=412752199]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 432.0
+offset_top = -232.0
+offset_right = 532.0
+offset_bottom = -209.0
+grow_vertical = 0
+text = "13 near misses!"
+label_settings = SubResource("LabelSettings_1pjrk")
+horizontal_alignment = 2
+vertical_alignment = 1

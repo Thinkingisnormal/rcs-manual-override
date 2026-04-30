@@ -127,7 +127,7 @@ func input_Collision_Report(damageRow: Dictionary):
 	
 
 func Player_Death():
-	if !isDead: # so func only plays once
+	if !isDead:
 		get_parent().find_child("SpawnTimer").stop()
 		filter_report_and_send(unfilteredCollisionReport)
 		isDead = true;
@@ -139,15 +139,15 @@ var waysToSayRock = ["an asteroid","a small moon","a celestial object","a pebble
 var bigLoss = ["cracking a window","losing a whole thruster","breaking On-Board Navigation","tearing the thermal insulation","breaking the communications antenna","puncturing the 02 tanks"]
 var medLoss = ["knocking off an external camera","crushing the EVA suits","destroying nonessential cargo","tearing off access covers","breaking power cells","cracking the LIDAR"]
 var smallLoss = ["chipping external paint","losing a screw","knocking a screw","causing abrasion of window surface","scratching external paint","kissing the hull","knocking unsecured items around.","tearing the access latch"]
-var concludingSentence = ["Our next budget is so cooked...","this is what happens when our budget is halved...","innocent lives are lost... Taco Bell 2nite?","To be fair, Houston told them to not head into the astroid field...","4 hours until we release this to the media, get yourself sorted.","Take a breather and report back for next launch.","wow, we are just going through our people today!","this is NOT like the movies...","yikes...","They did better than the last four!","Mark poopfart mk.5 ready for launch.","glad i wasn't those people, phew!","i think we should add more boosters...","duly noted...","wow!","I am audibly sighing right now.", "tsk tsk tsk...","bro","they signed the new contract right?","This is a sad sight, exclaimation mark report back to husky, no, husky, NO, backspace backspace backspace, NO DELETE, DARN this text to speech dot dot dot"]
+var concludingSentence = ["Our next budget is so cooked...","this is what happens when our budget is halved...","innocent lives are lost... Taco Bell 2nite?","To be fair, Houston told them to not head into the astroid field...","4 hours until we release this to the media, get yourself sorted.","Take a breather and report back for next launch.","wow, we are just going through our people today!","this is NOT like the movies...","yikes...","They did better than the last four!","poopfart mk.5 ready for next launch.","glad i wasn't those people, phew!","i think we should add more boosters...","duly noted...","wow!","I am audibly sighing right now.", "tsk tsk tsk...","bro","they signed the new contract right?","This is a sad sight, exclaimation mark report back to husky, no, husky, NO, backspace backspace backspace, NO DELETE, DARN this text to speech dot dot dot"]
 const SUMMARY_ROW_UI = preload("uid://ccp4q3b2vw47v") # preload the single row ui so i can instantiate copys 
 
 # filters the UnfilteredCollisionReport list into a summary that is shown to the player after game over.
 func filter_report_and_send(reportDict: Dictionary):
 	var missCounter:int = 0;
 	
-	for id in unfilteredCollisionReport:
-		var collisionRow = unfilteredCollisionReport[id] #pmo fiure it out
+	for id in reportDict:
+		var collisionRow = reportDict[id] 
 		var newRow = SUMMARY_ROW_UI.instantiate()
 		match collisionRow["Damage Type"]:
 			"small":
@@ -164,7 +164,7 @@ func filter_report_and_send(reportDict: Dictionary):
 				after_action_ui.find_child("Paper").find_child("BodyContainer").find_child("BodyVbox").add_child(newRow)
 			"miss":
 				missCounter+=1;
-	
+		newRow.find_child("Sub Text").text = "The craft was going " + str(collisionRow["linear velocity"]) + " m/s"
 	after_action_ui.find_child("Paper").find_child("endingSentence").text = concludingSentence.pick_random()
 	after_action_ui.find_child("Paper").find_child("nearMiss").text = str(missCounter) + " near misses!"
 	after_action_ui.set_visible(true)

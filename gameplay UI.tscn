@@ -24,7 +24,7 @@ script/source = "extends Control
 func _ready() -> void:
 	subview.world_2d = get_viewport().world_2d # allows the subviewport (bottom right square of screen) to render the same 2d world as the main viewport
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	ship_camera.global_position = player.global_position #just making ship camera a child of the player seemed to break stuff so i just did this
 	health_bar.value = player.HEALTH
 	
